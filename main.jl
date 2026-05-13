@@ -51,3 +51,9 @@ function coeffs_in_order(l, m)
      for (i, cart) in enumerate(generate_cartesians_in_order(l))
      if ex.coeff(cart) != 0]
 end
+
+function normalization(l)
+    f = 2^l * x^(2l) / √Sym(π) * exp(-x^2)
+
+    integrate(f, (x, -Inf, Inf))
+end
