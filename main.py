@@ -1,6 +1,5 @@
-def main():
-    print("Hello from solid-harmonics!")
+import sympy as sp
 
+x, y, z = sp.symbols("x y z")
 
-if __name__ == "__main__":
-    main()
+print(x, y, z)
