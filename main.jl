@@ -5,8 +5,6 @@ x, y, z = symbols("x y z")
 r2 = x^2 + y^2 + z^2
 
 function s(l, m)
-    k = (l, m)
-
     l = Sym(l)
     m = Sym(m)
 
