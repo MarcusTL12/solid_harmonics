@@ -36,4 +36,11 @@ def s(l, m):
         return sp.simplify(n / d)
 
 
-print(s(2, -2))
+def normalization(l):
+    f = sp.Number(2)**l * x**(2 * l) / sp.sqrt(sp.pi) * sp.exp(-x**2)
+
+    return sp.integrate(f, (x, -sp.oo, sp.oo))
+
+
+for l in range(6):
+    print(normalization(l))
