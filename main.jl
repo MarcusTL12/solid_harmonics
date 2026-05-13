@@ -40,3 +40,14 @@ function s(l, m)
         simplify(n / d)
     end
 end
+
+function generate_cartesians_in_order(l)
+    [x^(l - lz - ly) * y^ly * z^lz for lz in 0:l for ly in 0:(l-lz)]
+end
+
+function coeffs_in_order(l, m)
+    ex = expand(s(l, m))
+    [i => ex.coeff(cart)
+     for (i, cart) in enumerate(generate_cartesians_in_order(l))
+     if ex.coeff(cart) != 0]
+end
