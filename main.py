@@ -42,5 +42,34 @@ def normalization(l):
     return sp.integrate(f, (x, -sp.oo, sp.oo))
 
 
-for l in range(6):
-    print(normalization(l))
+def generate_cartesians_in_order(l):
+    cart = []
+
+    for lz in range(l + 1):
+        for ly in range(l - lz + 1):
+            lx = l - lz - ly
+            cart.append((
+                x**lx * y**ly * z**lz,
+                normalization(lx) * normalization(ly) * normalization(lz)
+            ))
+
+    return cart
+
+
+def coeffs_in_order(l, m):
+    ex = sp.expand(s(l, m))
+
+    coeffs = []
+
+    for i, (cart, n) in enumerate(generate_cartesians_in_order(l)):
+        c = ex.coeff(cart)
+        if c != 0:
+            coeffs.append((
+                i,
+                c * sp.sqrt(sp.Number(n) / sp.Number(normalization(l)))
+            ))
+
+    return coeffs
+
+
+print(coeffs_in_order(4, -4))
