@@ -60,3 +60,34 @@ function normalization(l)
 
     integrate(f, (x, -Inf, Inf))
 end
+
+function C(l, m, t, u, v)
+    c = binomial(l, t) * binomial(l - t, abs(m) + t) *
+        binomial(t, u) * binomial(abs(m), 2v + (m < 0))
+
+    (iseven(t + v) ? c : -c) // 4^t
+end
+
+function NS(l, m)
+    lf = factorial(l)
+
+    f1 = factorial(l + m) // lf
+    f2 = factorial(l - m) // lf
+
+    f3 = 1 // (2^(2 * abs(m) + (m == 0) - 1))
+
+    √(Sym(f1 * f2 * f3))
+end
+
+function s_direct(l, m)
+    ex = Sym(0)
+
+    for t in 0:fld(l - abs(m), 2), u in 0:t, v in 0:fld(abs(m) - (m < 0), 2)
+        ex += C(l, m, t, u, v) *
+              x^(2t + abs(m) - 2u - 2v - (m < 0)) *
+              y^(2u + 2v + (m < 0)) *
+              z^(l - 2t - abs(m))
+    end
+
+    NS(l, m) * ex
+end
