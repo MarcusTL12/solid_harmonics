@@ -91,3 +91,7 @@ function s_direct(l, m)
 
     NS(l, m) * ex
 end
+
+function cart_to_index(lx, ly, lz)
+    (lz * (2lx + 2ly + lz + 3) + 2ly) ÷ 2
+end
