@@ -71,7 +71,7 @@ end
 function NS(l, m)
     lf = factorial(l)
 
-    f1 = factorial(l + m) // lf
+    f1 = factorial(big(l + m)) // lf
     f2 = factorial(l - m) // lf
 
     f3 = 1 // (2^(2 * abs(m) + (m == 0) - 1))
