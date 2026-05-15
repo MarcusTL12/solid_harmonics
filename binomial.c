@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdio.h>
 
 uint64_t binomial(uint64_t n, uint64_t k) {
     if (k > n) {
@@ -10,16 +9,14 @@ uint64_t binomial(uint64_t n, uint64_t k) {
         k = n - k;
     }
 
-    if (k == 0 || k == n) {
+    if (k == 0) {
         return 1;
     }
 
-    uint64_t x = n - k + 1, nn = x + 1, rr = 2;
+    uint64_t x = n - k + 1;
 
-    while (rr <= k) {
+    for (uint64_t nn = x + 1, rr = 2; rr <= k; rr++, nn++) {
         x = (x * nn) / rr;
-        rr += 1;
-        nn += 1;
     }
 
     return x;
